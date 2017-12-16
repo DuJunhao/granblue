@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="jquery.js"></script>
+		<script src="options.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+	</head>
+	<body>
+		<div class="mainDiv">
+			<div class="scrollMainDiv">
+				<div class="div02">
+					<input type="button" id="btnRefresh" value="更新"/>
+				</div>
+				<div class="clear"></div>
+				<hr>
+				<div class="div01">
+					运行标志
+				</div>
+				<div class="div02">
+					<div class="buttonGroup">
+						<input type="radio" name="gbfToolCommnFg" value="1" id="gbfToolCommnFg-0"><!--
+					--><label for="gbfToolCommnFg-0">ON</label><!--
+					--><input type="radio" name="gbfToolCommnFg" value="0" id="gbfToolCommnFg-1"><!--
+					--><label for="gbfToolCommnFg-1">OFF</label>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<hr>
+				<div class="div01">
+					画面倍率
+				</div>
+				<div class="div02">
+					<input type="range" id="windowZoom" step="0.1" min="0.9" max="2" style="width:300px;">
+					<span id="windowZoomTxt"></span>
+				</div>
+				<div class="clear"></div>
+				<div class="div00">
+					FPS設定
+				</div>
+				<div class="clear"></div>
+				<div class="div01">
+					目标URL
+				</div>
+				<div class="div02">
+					<input type="text" name="gbfToolFpsTarget" value=""  id="gbfToolFpsTarget" class="txt_h txt_h_60">
+				</div>
+				<div class="clear"></div>
+				<div class="div01">
+					FPS値
+				</div>
+				<div class="div02">
+					<div class="buttonGroup">
+						<input type="radio" name="gbfToolFpsSetting" value="12" id="gbfToolFpsSetting-1"><label for="gbfToolFpsSetting-1">12</label><!--
+					 --><input type="radio" name="gbfToolFpsSetting" value="24" id="gbfToolFpsSetting-2"><label for="gbfToolFpsSetting-2">24</label><!--
+					 --><input type="radio" name="gbfToolFpsSetting" value="36" id="gbfToolFpsSetting-3"><label for="gbfToolFpsSetting-3">36</label><!--
+					 --><input type="radio" name="gbfToolFpsSetting" value="50" id="gbfToolFpsSetting-4"><label for="gbfToolFpsSetting-4">50</label><!--
+					 --><input type="radio" name="gbfToolFpsSetting" value="99" id="gbfToolFpsSetting-5"><label for="gbfToolFpsSetting-5">99</label>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<hr>
+				<div class="div01">
+					字体
+				</div>
+				<div class="div02">
+					<input type="text" name="gbfToolFont" value=""  id="gbfToolFont" class="txt_h txt_h_20">
+				</div>
+				<div class="clear"></div>
+				<hr>
+				<div class="hide">
+					<div class="div01">
+						运行方式
+					</div>
+					<div class="div02">
+						<div class="buttonGroup">
+							<input type="radio" name="gbfToolCommnMode" value="1" id="gbfToolCommnMode-1"><label for="gbfToolCommnMode-1">戦闘</label><!--
+						--><input type="radio" name="gbfToolCommnMode" value="2"  id="gbfToolCommnMode-2"><label for="gbfToolCommnMode-2">共闘</label><!--
+						--><input type="radio" name="gbfToolCommnMode" value="3"  id="gbfToolCommnMode-3"><label for="gbfToolCommnMode-3">クエ</label><!--
+						--><input type="radio" name="gbfToolCommnMode" value="4"  id="gbfToolCommnMode-4"><label for="gbfToolCommnMode-4">周回</label><!--
+						--><input type="radio" name="gbfToolCommnMode" value="8"  id="gbfToolCommnMode-5"><label for="gbfToolCommnMode-5">強化</label><!--
+						--><input type="radio" name="gbfToolCommnMode" value="10" id="gbfToolCommnMode-6"><label for="gbfToolCommnMode-6">ﾏﾙﾁ </label>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<hr>
+				<div class="div00">
+					自动战斗选择
+				</div>
+				<div class="clear"></div>
+				<div class="div01">
+					结果
+				</div>
+				<div class="div02">
+					<div class="buttonGroup">
+						<input type="radio" name="getItemShowFg" value="0" id="getItemShowFg-0"><!--
+					--><label for="getItemShowFg-0">跳过</label><!--
+					--><input type="radio" name="getItemShowFg" value="1" id="getItemShowFg-1"><!--
+					--><label for="getItemShowFg-1">確認</label>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div class="div01">
+					属性
+				</div>
+				<div class="div02">
+					<div class="buttonGroup" style="vertical-align:middle; padding:3px 0;">
+						<input type="radio" name="ptZokusei" value="1" id="ptZokusei-1"><!--
+					--><label for="ptZokusei-1">火</label><!--
+					--><input type="radio" name="ptZokusei" value="2" id="ptZokusei-2"><!--
+					--><label for="ptZokusei-2">水</label><!--
+					--><input type="radio" name="ptZokusei" value="3" id="ptZokusei-3"><!--
+					--><label for="ptZokusei-3">土</label><!--
+					--><input type="radio" name="ptZokusei" value="4" id="ptZokusei-4"><!--
+					--><label for="ptZokusei-4">木</label><!--
+					--><input type="radio" name="ptZokusei" value="5" id="ptZokusei-5"><!--
+					--><label for="ptZokusei-5">光</label><!--
+					--><input type="radio" name="ptZokusei" value="6" id="ptZokusei-6"><!--
+					--><label for="ptZokusei-6">闇</label>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div class="div01">
+					Supporter
+				</div>
+				<div class="div02">
+					<div class="buttonGroup">
+						<input type="radio" name="friendSelFg" value="1" id="friendSelFg-0"><!--
+					--><label for="friendSelFg-0">する</label><!--
+					--><input type="radio" name="friendSelFg" value="0" id="friendSelFg-1"><!--
+					--><label for="friendSelFg-1">しない</label>
+					</div>
+				</div>
+				<div class="clear"></div>
+
+				<div class="div01">
+					マルチ入場許可
+				</div>
+				<div class="div02">
+					<input type="text" name="maltiBossNames" value=""  id="maltiBossNames" class="txt_h txt_h_60">
+				</div>
+				<div class="clear"></div>
+				<div class="div01">
+					スタンプ（回復薬取得）
+				</div>
+				<div class="div02">
+					<div class="buttonGroup">
+						<input type="radio" name="firstChatFg" value="1" id="firstChatFg-0"><!--
+					--><label for="firstChatFg-0">する</label><!--
+					--><input type="radio" name="firstChatFg" value="0" id="firstChatFg-1"><!--
+					--><label for="firstChatFg-1">しない</label>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div class="div01">
+					回復アイテム
+				</div>
+				<div class="div02">
+					<div class="buttonGroup">
+						<input type="radio" name="useCureItemFg" value="1" id="useCureItemFg-0"><!--
+					--><label for="useCureItemFg-0">使用</label><!--
+					--><input type="radio" name="useCureItemFg" value="0" id="useCureItemFg-1"><!--
+					--><label for="useCureItemFg-1">不要</label>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div class="div01">
+					召喚
+				</div>
+				<div class="div02">
+					<div class="buttonGroup">
+						<input type="radio" name="summonFg" value="1" id="summonFg-0"><!--
+					--><label for="summonFg-0">使用</label><!--
+					--><input type="radio" name="summonFg" value="0" id="summonFg-1"><!--
+					--><label for="summonFg-1">不要</label>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div class="div01">
+					スキル
+				</div>
+				<div class="div02">
+					<div class="buttonGroup">
+						<input type="radio" name="skillUseFg" value="1" id="skillUseFg-0"><!--
+					--><label for="skillUseFg-0">使用</label><!--
+					--><input type="radio" name="skillUseFg" value="0" id="skillUseFg-1"><!--
+					--><label for="skillUseFg-1">不要</label>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div class="div01">
+					不要スキル
+				</div>
+				<div class="div02">
+					<input type="text" name="noUseSkillName" value=""  id="noUseSkillName" class="txt_h txt_h_60">
+				</div>
+				<div class="clear"></div>
+				<div class="div01">
+					奥義ｹﾞｰｼﾞMAX時不要
+				</div>
+				<div class="div02">
+					<input type="text" name="useSkillName6" value=""  id="useSkillName6" class="txt_h txt_h_60">
+				</div>
+				<div class="clear"></div>
+				<div class="div01">
+					優先スキル
+				</div>
+				<div class="div02">
+					<input type="text" name="useSkillName1" value=""  id="useSkillName1" class="txt_h txt_h_60">
+				</div>
+				<div class="clear"></div>
+				<div class="div01">
+					奥義発動時スキル
+				</div>
+				<div class="div02">
+					<input type="text" name="useSkillName5" value=""  id="useSkillName5" class="txt_h txt_h_60">
+				</div>
+				<div class="clear"></div>
+				<div class="div01">
+					チャージ有スキル
+				</div>
+				<div class="div02">
+					<input type="text" name="useSkillName2" value=""  id="useSkillName2" class="txt_h txt_h_60">
+				</div>
+				<div class="clear"></div>
+				<div class="div01">
+					敵必殺時スキル
+				</div>
+				<div class="div02">
+					<input type="text" name="useSkillName3" value=""  id="useSkillName3" class="txt_h txt_h_60">
+				</div>
+				<div class="clear"></div>
+				<div class="div01">
+					敵ブレイク時スキル
+				</div>
+				<div class="div02">
+					<input type="text" name="useSkillName4" value=""  id="useSkillName4" class="txt_h txt_h_60">
+				</div>
+				<div class="clear"></div>
+				<div class="div01">
+					ピンチ時スキル
+				</div>
+				<div class="div02">
+					<input type="text" name="useSkillName7" value=""  id="useSkillName7" class="txt_h txt_h_60">
+				</div>
+				<div class="clear"></div>
+				<div class="div01">
+					コンソール出力
+				</div>
+				<div class="div02">
+					<div class="buttonGroup">
+						<input type="radio" name="skillConsoleOut" value="0" id="skillConsoleOut-0"><!--
+					--><label for="skillConsoleOut-0">しない</label><!--
+					--><input type="radio" name="skillConsoleOut" value="1" id="skillConsoleOut-1"><!--
+					--><label for="skillConsoleOut-1">する</label>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div class="div01">
+					優先ターゲット
+				</div>
+				<div class="div02">
+					<input type="text" name="gbfToolRaidTarget" value=""  id="gbfToolRaidTarget" class="txt_h txt_h_60">
+				</div>
+				<div class="clear"></div>
+				<hr>
+				<div class="div00">
+					クエスト周回情報
+				</div>
+				<div class="clear"></div>
+				<div class="div01">
+					クエストURL
+				</div>
+				<div class="div02">
+					http://game.granbluefantasy.jp/<input type="text" name="questUrl" value=""  id="questUrl" class="txt_h txt_h_40">
+				</div>
+				<div class="clear"></div>
+				<div class="div01">
+					消費AP
+				</div>
+				<div class="div02">
+					<input type="text" name="questAp" value=""  id="questAp" class="txt_h txt_h_2">
+				</div>
+				<div class="clear"></div>
+				<hr>
+			</div>
+		</div>
+	</body>
+</html>

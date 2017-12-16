@@ -1,0 +1,27 @@
+{
+	"name": "グラブルツール",
+	"icons" : {
+		"16"	: "icon19.png",
+		"48"	: "icon19.png",
+		"128"	: "icon19.png"
+	},
+	"version": "0.0.1",
+	"manifest_version": 2,
+	"description": "グラブルツール",
+	"permissions": ["tabs"],
+	"background": {
+		"scripts": ["background.js","jquery.js"]
+	},
+	"options_page": "options.html",
+	"content_scripts": [
+		{
+			"matches": ["http://game.granbluefantasy.jp/*"],
+			"js": ["jquery.js","script.js"]
+		}
+	],
+	"browser_action" : {
+		"default_icon" : "icon19.png",
+		"default_title" : "Popup",
+		"default_popup" : "popup.html"
+	}
+}
