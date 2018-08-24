@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=0.14">
+		<meta charset="utf-8" /> 
+		<title></title> 
+		<!-- build:js scripts/popup.js --> 
+		<script src="bower_components/jquery/dist/jquery.js"></script> 
+		<script src="bower_components/jquery/dist/application.js"></script> 
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script> 
+		<script src="scripts/popup.js"></script> 
+		<script src="bower_components/flat-ui.min.js"></script> 
+		
+		<!-- endbuild --> 
+		<!-- build:css styles/main.css --> 
+		<!--
+		s/bootstrap.min.css"> -->
+
+		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/> 
+		<link rel="stylesheet" type="text/css" href="styles/main.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" /> 
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css" /> 
+		<link rel="stylesheet" type="text/css" href="css/flat-ui.css" /> 
+		<!-- endbuild --> 
+		<style>
+			html, body {
+			  width: 400px;
+			  height: 600px;
+			  font-family:"微软雅黑";
+			}
+			body {
+				background-image: url(bg.jpg);
+				background-size:100% 100%;
+				background-repeat:no-repeat;
+			}
+			div.selectlnline div{
+				float:left; 
+			}
+			img {
+			  width: 30px;
+			  height: 30px;
+			}
+			img.off {
+			  opacity: 0.3;
+			}
+			.tab .nav-tabs{
+				border-bottom: 0 none;
+			}
+			div.logon{
+			 height:200px; position:absolute; left:50%; top:50%; margin:-10px 0 0 -200px; 
+			}
+			.tab .nav-tabs li{
+				width:15%;
+				margin-bottom: 5px;
+				margin-right: 2px;
+			}
+			.tab .nav-tabs li a{
+				border: none;
+				width:90%;
+				margin-bottom: 5px;
+				color:#fff;
+				background:#34495E;
+				border-radius:0;
+			}
+			.tab .nav-tabs li a i{
+				width:15%;
+				margin-bottom: 5px;
+				font-size:14px;
+				margin-right:10px;
+			}
+			.tab .nav-tabs li.active a,
+			.tab .nav-tabs li.active a:focus,
+			.tab .nav-tabs li.active a:hover{
+				width: 90%;
+				border: none;
+				background: #16A085;
+				color:#fff;
+				transition:background 0.20s linear;
+			}
+			.tab .nav-tabs li.active:after {
+				content: "";
+				position: absolute;
+				bottom: -15px;
+				left: 4%;
+				border: 15px solid transparent;
+				border-bottom-color: #16A085;
+			}
+			.tab .nav-tabs li.active a:after{
+				content: "";
+				position: absolute;
+				top: 5px;
+				left: 4%;
+				width: 90%;
+				height:80%;
+				border: 3px solid #fff;
+				display: block;
+			}
+			.tab .tab-content{
+				background: #fdfdfd;
+				line-height: 25px;
+				padding:10px 15px;
+				margin-top: 15px;
+				border: 0px solid #ddd;
+				border-top:5px solid #16A085;
+				opacity:0.8;
+			}
+			#quest-history button {
+			  width: 100%;
+			  text-align: left;
+			}
+			.buttonGroup input[type="radio"] {
+				display: none;
+			}
+			.buttonGroup label {
+				border-top: solid 1px #999999;
+				border-bottom: solid 1px #999999;
+				border-right: solid 1px #999999;
+				background-color: #34495E;
+				color: #FFFFFF;
+				padding: 3px 10px;
+			}
+			.buttonGroup > label:first-of-type {
+				border-left: solid 1px #999999;
+				border-top-left-radius: 5px;
+				border-bottom-left-radius: 5px;
+			}
+			.buttonGroup > label:last-of-type {
+				border-top-right-radius: 5px;
+				border-bottom-right-radius: 5px;
+			}
+			.buttonGroup input[type="radio"]:checked + label {
+						background-color: #16A085;
+			}
+			.buttonGroup input[type="checkbox"] {
+						display: none;
+			}
+			.buttonGroup input[type="checkbox"]:checked + label {
+						background-color: #16A085;
+			}
+		</style> 
+	</head> 
+	<body> 
+		<form> 
+			<div id="lg"></div>
+			<div class="tab" role="tabpanel">
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="active"><a href="#Section1" aria-controls="base" role="tab" data-toggle="tab"><i class="fa fa-cube"></i>基</a></li>
+					<li role="presentation"><a href="#Section2" aria-controls="base2" role="tab" data-toggle="tab"><i class="fa fa-cube"></i>召</a></li>
+					<li role="presentation"><a href="#Section3" aria-controls="base3" role="tab" data-toggle="tab"><i class="fa fa-cube"></i>辅</a></li>
+					<li role="presentation"><a href="#Section4" aria-controls="base4" role="tab" data-toggle="tab"><i class="fa fa-cube"></i>蹲</a></li>
+					<li role="presentation"><a href="#Section5" aria-controls="base5" role="tab" data-toggle="tab"><i class="fa fa-cube"></i>战</a></li>
+					<li id="logout"><blockquote class="pull-right"><small>注销</small></blockquote></li>
+				</ul>
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="Section1" >
+						<p class="text-primary">基础设置</p>
+						<blockquote class="pull-right"><small>需要刷新页面</small></blockquote>
+						<div class="bootstrap-switch-square" >
+							<input class="checkbox" id="enabled"name="enabled" type="checkbox" data-toggle="switch" /> 开/关
+						</div><br/>
+						<p class="text-primary">加速器 帧率</p>
+						<blockquote class="pull-right"><small>正常速度24</small></blockquote>
+						<div class="buttonGroup" style="vertical-align:middle; padding:3px 0;"> 
+							<input type="radio" name="speed" value="12" id="speed-1" /><!--
+							--><label for="speed-1">12</label><!--
+							--><input type="radio" name="speed" value="24" id="speed-2" /><!--
+							--><label for="speed-2">24</label><!--
+							--><input type="radio" name="speed" value="30" id="speed-3" /><!--
+							--><label for="speed-3">30</label><!--
+							--><input type="radio" name="speed" value="35" id="speed-4" /><!--
+							--><label for="speed-4">35</label><!--
+							--><input type="radio" name="speed" value="50" id="speed-5" /><!--
+							--><label for="speed-5">50</label><!--
+							--><input type="radio" name="speed" value="80" id="speed-6" /><!--
+							--><label for="speed-6">80</label>
+						</div>
+						<p class="text-primary">反作弊</p>
+						<div class="input-group">
+							<span class="input-group-addon" >屏蔽地址</span>
+							<input class="form-control" type="text" name="block-id" id="block-id" placeholder="输入部分地址" /> 	
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-primary btn-sx active" id="blockStart">开始</button> 
+							</span>	
+						</div>
+						<p class="text-primary">定时器 </p>
+							<div class="bootstrap-switch-square" >
+								<input id="setTime" name="setTime" type="checkbox" data-toggle="switch" /> 开/关
+							</div>	
+						<br/>	
+						<div class="input-group">
+							<span class="input-group-addon">开始</span>
+							<input class="form-control" type="text" name="timeStart" id="timeStart" placeholder="HHmm"/>
+							<span class="input-group-addon">结束</span>
+							<input class="form-control" type="text" name="timeEnd" id="timeEnd" placeholder="HHmm"/>
+						</div>
+					
+										<div class="input-group">
+								<span class="input-group-addon">任务地址</span>
+								<input class="form-control" style="width: 100%" type="text" name="quest-id" id="quest-id" placeholder="输入完整任务进入路径后按开始" /> 	
+								<span class="input-group-btn">
+									<button type="button" class="btn btn-primary btn-sx active" id="start">开始</button> 
+								</span>		
+								<span class="input-group-btn">
+								<button type="button" class="btn btn-danger btn-sx active" id="stop">停止</button> 	
+								</span>						
+							</div>
+							<div class="input-group">
+								<span class="input-group-addon">任务名称</span>
+								<input class="form-control" style="width: 100%" type="text" name="quest-name" id="quest-name" placeholder="使用战斗列表功能需要添加" /> 	
+								<span class="input-group-btn">
+									<button type="button" class="btn btn-primary btn-sx active" id="tolist">添加</button> 
+								</span>		
+								<span class="input-group-btn">
+								<button type="button" class="btn btn-danger btn-sx active" id="clearlist">清除</button> 	
+								</span>		
+							</div>
+								<p class="text-primary">自动任务列表(先添加列表完成后点击开始)</p>
+								<div id="misson-list" style="max-height: 200px; overflow-y: auto;">
+								</div>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="Section2">
+						<div>
+		
+													<p class="text-primary">共斗设置 </p>
+						<blockquote class="pull-right"><small>没时间解释了快上车</small></blockquote>
+						<div class="bootstrap-switch-square" >
+							<input id="master" name="master" type="checkbox" data-toggle="switch" /> 我是房主
+						</div>
+						<div class="bootstrap-switch-square" >
+							<input id="coopraid" name="coopraid" type="checkbox" data-toggle="switch" /> 共斗毒瘤
+						</div>
+						<div class="buttonGroup" style="vertical-align:middle; padding:3px 0;"> 
+							<input type="radio" name="ptcoopraid" value="601011" id="ptcoopraid-1" /><!--
+							--><label for="ptcoopraid-1">罐子</label><!--
+							--><input type="radio" name="ptcoopraid" value="601731" id="ptcoopraid-2" /><!--
+							--><label for="ptcoopraid-2">信念</label><!--
+							--><input type="radio" name="ptcoopraid" value="601931" id="ptcoopraid-3" /><!--
+							--><label for="ptcoopraid-3">人马</label><!--
+							--><input type="radio" name="ptcoopraid" value="601841" id="ptcoopraid-4" /><!--
+							--><label for="ptcoopraid-4">光妃</label><!--
+							--><input type="radio" name="ptcoopraid" value="601941" id="ptcoopraid-5" /><!--
+							--><label for="ptcoopraid-5">幻魔</label><!--
+							--><input type="radio" name="ptcoopraid" value="601251" id="ptcoopraid-6" /><!--
+							--><label for="ptcoopraid-6">火球</label><!--
+							--><input type="radio" name="ptcoopraid" value="999999" id="ptcoopraid-0" /><!--
+							--><label for="ptcoopraid-0">自选</label>
+						</div></br>
+							<div >
+							<select style="width: 25%;" class="form-control select select-primary select-block mbl" name="coopFriSelect" id="coopFriSelect">
+								  <optgroup  style="width: 30%" label="难度" 	>
+									<option   style="width: 30%" value="HARD">HARD</option>
+									<option  style="width: 30%" value="EX">EX</option>
+								  </optgroup>
+								</select>
+								<select style="width: 25%;" class="form-control select select-primary select-block mbl" name="coopSecSelect" id="coopSecSelect">
+								  <optgroup label="大关卡" 	>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+								  </optgroup>
+								</select>
+								<select style="width: 25%;" class="form-control select select-primary select-block mbl" name="coopThrSelect" id="coopThrSelect">
+								  <optgroup label="大关卡" 	>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+								  </optgroup>
+								</select>
+							</div>
+								
+							<div class="input-group">
+								<span class="input-group-addon">
+								<div class="bootstrap-switch-square" ><p>共斗刷新时间 <input name="setcoopreloadtime" type="checkbox" data-toggle="switch" />
+								</span></p></div>
+								<input style="width: 80%" class="form-control" type="text" name="coopreloadtime" id="coopreloadtime" placeholder="启用自定义战斗刷新间隔（默认10S）" /> 
+								<span class="input-group-btn">
+									<button type="button" class="btn btn-primary btn-sx active" id="coopreloadtime-ok">确定</button> 
+								</span>	
+							</div>	
+							<br/>
+							<blockquote class="pull-right" style="width:30%">召唤兽<small>Choose Your Big Leg</small></blockquote>
+							<div class="bootstrap-switch-square" >
+								<input name="auto-choose-supporter" type="checkbox" data-toggle="switch" /> 自动选择好友 <br/>
+								<input name="dragon-girl" type="checkbox" data-toggle="switch" /> 格兰丁优先 
+							</div> 
+							<div class="bootstrap-switch-square" >
+								<input name="black-dragon" type="checkbox" data-toggle="switch" /> 巴哈姆特优先 <br/>
+								<input name="gay" type="checkbox" data-toggle="switch" /> 路西法优先 
+							</div> 
+							</p>
+							<p class="text-primary">选择好友属性</p>
+							</p>
+							<div class="buttonGroup" style="vertical-align:middle; padding:3px 0;"> 
+								<input type="radio" name="ptZokusei" value="1" id="ptZokusei-1" /><!--
+								 --><label for="ptZokusei-1">火</label><!--
+								 --><input type="radio" name="ptZokusei" value="2" id="ptZokusei-2" /><!--
+								 --><label for="ptZokusei-2">水</label><!--
+								 --><input type="radio" name="ptZokusei" value="3" id="ptZokusei-3" /><!--
+								 --><label for="ptZokusei-3">土</label><!--
+								 --><input type="radio" name="ptZokusei" value="4" id="ptZokusei-4" /><!--
+								 --><label for="ptZokusei-4">风</label><!--
+								 --><input type="radio" name="ptZokusei" value="5" id="ptZokusei-5" /><!--
+								 --><label for="ptZokusei-5">光</label><!--
+								 --><input type="radio" name="ptZokusei" value="6" id="ptZokusei-6" /><!--
+								 --><label for="ptZokusei-6">暗</label><!--
+								 --><input type="radio" name="ptZokusei" value="0" id="ptZokusei-0" /><!--
+								 --><label for="ptZokusei-0">无</label> 
+							</div>
+							</p>
+							<div class="input-group" ><!--
+								 --><span class="input-group-addon" style="height:20%"><!--
+								 --><div class="bootstrap-switch-square" ><p>自定义召唤石 <!--
+								 --><input name="select" style="height: 50%"  type="checkbox" data-toggle="switch"><!--
+								 --><!--
+								 --></span></p></div><!--
+								 --><input style="width: 80%" class="form-control" type="text" name="select-id" id="select-id" placeholder="自定义召唤，此处输入召唤名字(此功能测试中)" /><!--
+								 --><span class="input-group-btn"><!--
+								 --><button type="button"  class="btn btn-primary btn-sx active" id="OK">确定</button> <!--
+								 --></span><!--
+								 --></div>
+						</div>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="Section3">
+						<p class="text-primary">客户端模拟</p>
+							<div class="buttonGroup" style="vertical-align:middle; padding:3px 0;"> 
+											<input type="radio" name="userAgent" value="0" id="userAgent-1" /><!--
+											 --><label for="userAgent-1">无</label><!--
+											 --><input type="radio" name="userAgent" value="1" id="userAgent-2" /><!--
+											 --><label for="userAgent-2">IOS</label><!--
+											 --><input type="radio" name="userAgent" value="2" id="userAgent-3" /><!--
+											 --><label for="userAgent-3">IOSAPP</label><!--
+											 --><input type="radio" name="userAgent" value="3" id="userAgent-4" /><!--
+											 --><label for="userAgent-4">CHROMEAPP</label>
+										</div>
+								
+						<div id="use-water" class="bootstrap-switch-square" > 
+							<input name="use-full" type="checkbox" data-toggle="switch" />
+							大红
+							<input name="use-semi" type="checkbox" data-toggle="switch" />
+							小红
+						</div> 
+						<div class="bootstrap-switch-square" > 
+							<div><input name="normal-attack-only" type="checkbox" data-toggle="switch" /> 只使用普通攻击</div> 
+							<div><input name="FCopen" type="checkbox" data-toggle="switch" /> 使用FC</div> 
+							<div><input name="FCrefresh" type="checkbox" data-toggle="switch" /> 奥义完成后自动刷新</div> 
+							<div><input name="xuecaibichi" type="checkbox" data-toggle="switch" /> 雪菜 (菲力3技能，与FC冲突)</div> 
+							<div><input name="auto-summon" type="checkbox" data-toggle="switch" /> 自动召唤</div> 
+							<div><input name="auto-medal" type="checkbox" data-toggle="switch" /> 自动抽战货</div> 
+							<div><input name="use-green-potion" type="checkbox" data-toggle="switch" /> 自动使用绿色药水蓝色药水</div> 
+							<div><input name="use-event-potion" type="checkbox" data-toggle="switch" /> 自动使用事件药水</div> 
+							<div><input name="use-event-revive" type="checkbox" data-toggle="switch" /> 自动使用事件复活药水</div> 
+						</div> 
+						</p>	
+						<div class="input-group">
+							<span class="input-group-addon">
+							<div class="bootstrap-switch-square" ><p>战斗刷新时间 <input name="setreloadtime" type="checkbox" data-toggle="switch" />
+							</span></p></div>
+							<input style="width: 80%" class="form-control" type="text" name="reloadtime" id="reloadtime" placeholder="启用自定义战斗刷新间隔（默认10S）" /> 
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-primary btn-sx active" id="setreloadtime-ok">确定</button> 
+							</span>	
+						</div>			
+					</div>
+					<div role="tabpanel" class="tab-pane" id="Section4">
+						<p class="text-primary">蹲婊设置</p>
+						<blockquote style="width: 40%" class="pull-right"></blockquote>
+						<!--<br/>-->
+						<div class="bootstrap-switch-square" >
+							<input id="autoSeachEx" name="autoSeachEx" type="checkbox" data-toggle="switch" /> 开启蹲婊模式
+						</div>   
+						<div class="buttonGroup" style="vertical-align:middle;"> 
+							<input type="radio" name="ptSearchType" value="1" id="ptSearchType-1" /><!--
+							--><label for="ptSearchType-1">值守普通怪</label><!--
+							--><input type="radio" name="ptSearchType" value="2" id="ptSearchType-2" /><!--
+							--><label for="ptSearchType-2">值守twitter</label>
+						</div> 
+						</p>
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="input-group">
+									<span class="input-group-addon">twitter</span>
+									<input class="form-control" type="text" name="seachTwitter" value="" id="seachTwitter" class="txt_h txt_h_30" placeholder="此处输入twitter需要搜索的名称" />
+								</div><!-- /input-group -->
+							</div><!-- /.col-lg-6-6 --><br>
+							<div class="col-lg-12">
+								<div class="input-group">
+									<span class="input-group-addon">婊 001</span>
+									<input class="form-control" type="text" name="seachEx-1" value="" id="seachEx-1" class="txt_h txt_h_30" placeholder="此处输入怪物ID" />
+								
+									<span class="input-group-addon">婊 002</span>
+									<input class="form-control" type="text" name="seachEx-2" value="" id="seachEx-2" class="txt_h txt_h_30" placeholder="此处输入怪物ID" />
+								</div><!-- /input-group -->
+							</div><!-- /.col-lg-6-6 -->
+							<div class="col-lg-12">
+								<div class="input-group">
+									<span class="input-group-addon">婊 003</span>
+									<input class="form-control" type="text" name="seachEx-3" value="" id="seachEx-3" class="txt_h txt_h_30" placeholder="此处输入怪物ID" />
+								
+									<span class="input-group-addon">婊 004</span>
+									<input class="form-control" type="text" name="seachEx-4" value="" id="seachEx-4" class="txt_h txt_h_30" placeholder="此处输入怪物ID" />
+								</div><!-- /input-group -->
+							</div><!-- /.col-lg-6-6 -->
+							<div class="col-lg-12">
+								<div class="input-group">
+									<span class="input-group-addon">婊 005</span>
+									<input class="form-control" type="text" name="seachEx-5" value="" id="seachEx-5" class="txt_h txt_h_30" placeholder="此处输入怪物ID" />
+								
+									<span class="input-group-addon">婊 006</span>
+									<input class="form-control" type="text" name="seachEx-6" value="" id="seachEx-6" class="txt_h txt_h_30" placeholder="此处输入怪物ID" />
+								</div><!-- /input-group -->
+							</div><!-- /.col-lg-6-6 -->
+						</div>
+						</p>
+						<button type="button" class="btn btn-primary btn-sx active" id="saveList">保存列表</button>  
+					</div>
+					<div role="tabpanel" class="tab-pane" id="Section5">
+						<p class="text-primary">战斗设置</p>
+						<blockquote class="pull-right">甄子丹<small>来!我们战个痛快!</small></blockquote>
+						<br/><br/>
+						</p>
+						<p class="text-primary">人物技能</p>
+						</p>
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="input-group">
+									<span class="input-group-addon">技1</span>
+									<input  class="form-control" type="text" name="skill-1-1" id="skill-1-1" placeholder="0" /> 
+									<span class="input-group-addon">技2</span>
+									<input  class="form-control" type="text" name="skill-1-2" id="skill-1-2" placeholder="0" />
+									<span class="input-group-addon">技3</span>
+									<input  class="form-control" type="text" name="skill-1-3" id="skill-1-3" placeholder="0" /> 
+									<span class="input-group-addon">技4</span>
+									<input  class="form-control" type="text" name="skill-1-4" id="skill-1-4" placeholder="0" />
+								</div><!-- /input-group -->
+							</div><!-- /.col-lg-6-6 -->
+							<div class="col-lg-12">
+								<div class="input-group">
+									<span class="input-group-addon">技1</span>
+									<input  class="form-control" type="text" name="skill-2-1" id="skill-2-1" placeholder="0" /> 
+									<span class="input-group-addon">技2</span>
+									<input  class="form-control" type="text" name="skill-2-2" id="skill-2-2" placeholder="0" />
+									<span class="input-group-addon">技3</span>
+									<input  class="form-control" type="text" name="skill-2-3" id="skill-2-3" placeholder="0" /> 
+									<span class="input-group-addon">技4</span>
+									<input  class="form-control" type="text" name="skill-2-4" id="skill-2-4" placeholder="0" />
+								</div><!-- /input-group -->
+							</div><!-- /.col-lg-6-6 -->
+							<div class="col-lg-12">
+								<div class="input-group">
+									<span class="input-group-addon">技1</span>
+									<input  class="form-control" type="text" name="skill-3-1" id="skill-3-1" placeholder="0" /> 
+									<span class="input-group-addon">技2</span>
+									<input  class="form-control" type="text" name="skill-3-2" id="skill-3-2" placeholder="0" />
+									<span class="input-group-addon">技3</span>
+									<input  class="form-control" type="text" name="skill-3-3" id="skill-3-3" placeholder="0" /> 
+									<span class="input-group-addon">技4</span>
+									<input  class="form-control" type="text" name="skill-3-4" id="skill-3-4" placeholder="0" />
+								</div><!-- /input-group -->
+							</div><!-- /.col-lg-6-6 -->
+							<div class="col-lg-12">
+								<div class="input-group">
+									<span class="input-group-addon">技1</span>
+									<input  class="form-control" type="text" name="skill-4-1" id="skill-4-1" placeholder="0" /> 
+									<span class="input-group-addon">技2</span>
+									<input  class="form-control" type="text" name="skill-4-2" id="skill-4-2" placeholder="0" />
+									<span class="input-group-addon">技3</span>
+									<input  class="form-control" type="text" name="skill-4-3" id="skill-4-3" placeholder="0" /> 
+									<span class="input-group-addon">技4</span>
+									<input  class="form-control" type="text" name="skill-4-4" id="skill-4-4" placeholder="0" />
+								</div><!-- /input-group -->
+							</div><!-- /.col-lg-6-6 -->
+						</div>
+						</p>
+						<p class="text-primary">召唤兽技能，目前开放 1 | 3 | 4 | 5 | 6 | 8 | 9</p>
+						</p>
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="input-group">
+									<span class="input-group-addon">自召1</span>
+									<input  class="form-control" type="text" name="summon-1" id="summon-1" placeholder="0" /> 
+									<span class="input-group-addon">自召2</span>
+									<input  class="form-control" type="text" name="summon-2" id="summon-2" placeholder="0" />
+									<span class="input-group-addon">自召3</span>
+									<input  class="form-control" type="text" name="summon-3" id="summon-3" placeholder="0" />
+								</div><!-- /input-group -->
+							</div><!-- /.col-lg-6-6 -->
+							<div class="col-lg-12">
+								<div class="input-group">
+									<span class="input-group-addon">自召4</span>
+									<input  class="form-control" type="text" name="summon-4" id="summon-4" placeholder="0" /> 
+									<span class="input-group-addon">自召5</span>
+									<input  class="form-control" type="text" name="summon-5" id="summon-5" placeholder="0" />
+									<span class="input-group-addon">友召0</span>
+									<input  class="form-control" type="text" name="summon-6" id="summon-6" placeholder="0" />
+								</div><!-- /input-group -->
+							</div><!-- /.col-lg-6-6 -->
+						</div>
+						</p>
+						<button type="button" class="btn btn-primary btn-sx active" id="saveSkill">保存列表</button>
+						<br/><br/>
+						<p class="text-primary">新版战斗模式技模式说明：</p>
+						<div>0.不释放 1.优先释放 2.普通释放 3.OD释放 4.BK释放</div>
+						<div>11.次级释放 12.最低级释放</div>
+						<div>5.BOSS即将普通奥义时释放 6.BOSS即将OD奥义时释放 </div>
+						<div>7.角色奥义满时释放 8.所有角色奥义满时释放（菲力专用）</div>
+						<div>9.BOSS有豆时才释放 10.BOSS身上有BUFF时释放 </div>
+						<div>13.HP小于30%释放 15.HP小于50%释放 16.HP小于100%释放</div>
+					</div>
+				</div>
+			</div>
+		</form>   
+	</body>
+</html>
