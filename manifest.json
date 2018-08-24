@@ -1,8 +1,8 @@
 {
-  "name": "罐子屋",
-  "version": "3.2.2",
+  "name": "MyGranblue",
+  "version": "3.2.3",
   "manifest_version": 3,
-  "description": "我是一款游戏插件",
+  "description": "一款游戏插件",
   "icons": {
     "128": "icon128.png"
   },
