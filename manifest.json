@@ -1,27 +1,54 @@
 {
-	"name": "グラブルツール",
-	"icons" : {
-		"16"	: "icon19.png",
-		"48"	: "icon19.png",
-		"128"	: "icon19.png"
-	},
-	"version": "0.0.1",
-	"manifest_version": 2,
-	"description": "グラブルツール",
-	"permissions": ["tabs"],
-	"background": {
-		"scripts": ["background.js","jquery.js"]
-	},
-	"options_page": "options.html",
-	"content_scripts": [
-		{
-			"matches": ["http://game.granbluefantasy.jp/*"],
-			"js": ["jquery.js","script.js"]
-		}
+  "name": "罐子屋",
+  "version": "3.2.2",
+  "manifest_version": 3,
+  "description": "我是一款游戏插件",
+  "icons": {
+    "128": "icon128.png"
+  },
+  "background": {
+	"page":"bg.html"
+  },
+  "browser_action": {
+    "default_icon": {
+      "32": "icon.png"
+    },
+    "default_title": "boost8-master",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://gbf.game.mbga.jp/*",
+		"http://game.granbluefantasy.jp/*"
+      ],
+      "js": [
+        "bower_components/jquery/dist/jquery.js",
+        "scripts/extra.js",
+        "scripts/contentscript3.js"
 	],
-	"browser_action" : {
-		"default_icon" : "icon19.png",
-		"default_title" : "Popup",
-		"default_popup" : "popup.html"
-	}
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ],
+  "permissions": [
+		"notifications",
+		"browsingData",
+		"tabs",
+		"storage",
+		"webRequest",
+		"webRequestBlocking",
+		"tabs",
+		"http://*/*",
+		"https://*/*"
+  ],
+  "web_accessible_resources": [
+    "reload.js",
+    "inject/click_.js",
+    "inject/load_.js",
+    "inject/engine.js",
+    "inject/select_all_normal.js",
+    "inject/weapon.js"
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }
