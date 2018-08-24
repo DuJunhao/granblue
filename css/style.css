@@ -2354,3 +2354,17 @@ div.shinseiModeDiv input {
 .buttonGroup input[type="radio"]:checked + label {
 	background-color	: #FFCCFF;
 }
+
+/* 2015.06.13 paQ*/
+#liHensei{
+	padding: 0;
+	list-style-type: none;
+	width: 100%;
+}
+/* 2015.07.23 paQ*/
+.buttonGroup input[type="checkbox"] {
+	display: none;
+}
+.buttonGroup input[type="checkbox"]:checked + label {
+	background-color	: #FFCCFF;
+}
